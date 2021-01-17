@@ -1,10 +1,10 @@
 import pygame
 
 
-class Schiff(pygame.sprite.Sprite):
+class Shuttle(pygame.sprite.Sprite):
 
     def __init__(self):
-        super(Schiff, self).__init__()
+        super(Shuttle, self).__init__()
         self.image = pygame.image.load("img\\shuttle.gif")
         self.rect = self.image.get_rect()
         self.rect.y = 100

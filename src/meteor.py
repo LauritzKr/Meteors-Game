@@ -14,8 +14,8 @@ class Meteor(pygame.sprite.Sprite):
 		self.speed = random.randint(1, 10)
 		self.directionx = random.choice(["right", "left"])
 		self.directiony = random.choice(["down", "up"])
-
-  	def move(self):
+		
+	def move(self):
 		if self.directionx == "right":
 			if self.rect.x >= 1000:
 				self.directionx = "left"
