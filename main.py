@@ -1,6 +1,7 @@
 import pygame
 import sys
 import random
+from time import sleep
 from threading import Thread
 from src import gui, shuttle, meteor
 
@@ -13,6 +14,7 @@ class Main(Thread):
 		
 		self.gui = gui.Gui()
 		self.score = 0
+		self.run = True
 
 		# Shuttle Object
 		self.shuttle = shuttle.Shuttle(self.gui.shuttle_img)
@@ -33,7 +35,7 @@ class Main(Thread):
 			self.all_planets.add(meteor.Meteor(random.randint(500, 1000), random.randint(300, 700), self.gui.planet2_img))
 			self.all_planets.add(meteor.Meteor(random.randint(500, 1000), random.randint(300, 700), self.gui.planet3_img))
 
-		while True:
+		while self.run:
 			pygame.time.delay(100)
 
 			self.gui.root.fill((0, 0, 0))
@@ -97,7 +99,6 @@ class Main(Thread):
 			self.all_shots.add(self.shuttle.shoot(self.shuttle.rect.x+50, self.shuttle.rect.y+40, "right", self.gui.shot_img))                 
 		
 		for shot in self.all_shots:
-			#shot.update()
 			if pygame.sprite.spritecollide(shot, self.all_meteors, True):
 				self.add_score()
 				for _ in range(3):
@@ -113,7 +114,10 @@ class Main(Thread):
 
 	def check_collision(self):
 		if pygame.sprite.spritecollide(self.shuttle, self.all_planets, True):
-			pass
+			print("GAME OVER!!!")
+			self.shuttle.image = pygame.transform.scale(pygame.image.load("img\\shot.gif"), (100, 100))
+			self.shuttle.speed = 0
+			self.run = False
 	
 	def add_score(self):
 		self.score += 1
