@@ -4,9 +4,9 @@ from src import shot
 
 class Shuttle(pygame.sprite.Sprite):
 
-    def __init__(self):
+    def __init__(self, image):
         super(Shuttle, self).__init__()
-        self.image = pygame.image.load("img\\shuttle.gif")
+        self.image = image
         self.rect = self.image.get_rect()
         self.rect.x = 50
         self.rect.y = 300
@@ -33,5 +33,5 @@ class Shuttle(pygame.sprite.Sprite):
         if direction == "down":
             self.rect.y += self.speed
 
-    def shoot(self, x, y, direction):
-        return shot.Shot(x, y, direction)
+    def shoot(self, x, y, direction, image):
+        return shot.Shot(x, y, direction, image)

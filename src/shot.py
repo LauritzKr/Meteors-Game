@@ -3,9 +3,9 @@ import pygame
 
 class Shot(pygame.sprite.Sprite):
 
-    def __init__(self, x, y, direction):
+    def __init__(self, x, y, direction, image):
         super(Shot, self).__init__()
-        self.image = pygame.transform.scale(pygame.image.load("img\\shot.gif"), (20, 20))
+        self.image = image
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y

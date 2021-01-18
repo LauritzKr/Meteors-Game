@@ -4,9 +4,9 @@ import random
 
 class Meteor(pygame.sprite.Sprite):
 
-	def __init__(self, width, height, posx, posy):
+	def __init__(self, posx, posy, image):
 		super(Meteor, self).__init__()
-		self.image = pygame.transform.scale(pygame.image.load("img\\meteor.gif"), (width, height))
+		self.image = image
 		self.rect = self.image.get_rect()
 		self.rect.x = posx
 		self.rect.y = posy
