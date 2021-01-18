@@ -21,7 +21,7 @@ class Main(Thread):
 
 		# Meteor Objects
 		self.all_meteors = pygame.sprite.Group()
-		for _ in range(7):
+		for _ in range(5):
 			self.all_meteors.add(meteor.Meteor(random.randint(500, 1000), random.randint(300, 700), self.gui.meteor_img))
 
 		self.all_shots = pygame.sprite.Group()
@@ -76,16 +76,16 @@ class Main(Thread):
 	
 	def update_shots(self):
 		if self.keys[pygame.K_UP]:   
-			self.all_shots.add(self.shuttle.shoot(self.shuttle.rect.x+50, self.shuttle.rect.y+50, "up", self.gui.shot_img))
+			self.all_shots.add(self.shuttle.shoot(self.shuttle.rect.x+90, self.shuttle.rect.y+70, "up", self.gui.shot_img))
 
 		if self.keys[pygame.K_LEFT]:
-			self.all_shots.add(self.shuttle.shoot(self.shuttle.rect.x, self.shuttle.rect.y, "left", self.gui.shot_img))
+			self.all_shots.add(self.shuttle.shoot(self.shuttle.rect.x+20, self.shuttle.rect.y+40, "left", self.gui.shot_img))
 
 		if self.keys[pygame.K_DOWN]:
-			self.all_shots.add(self.shuttle.shoot(self.shuttle.rect.x, self.shuttle.rect.y, "down", self.gui.shot_img))
+			self.all_shots.add(self.shuttle.shoot(self.shuttle.rect.x+90, self.shuttle.rect.y, "down", self.gui.shot_img))
 
 		if self.keys[pygame.K_RIGHT]:
-			self.all_shots.add(self.shuttle.shoot(self.shuttle.rect.x+100, self.shuttle.rect.y+100, "right", self.gui.shot_img))                 
+			self.all_shots.add(self.shuttle.shoot(self.shuttle.rect.x+50, self.shuttle.rect.y+40, "right", self.gui.shot_img))                 
 		
 		for shot in self.all_shots:
 			#shot.update()
