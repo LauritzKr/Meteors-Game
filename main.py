@@ -21,10 +21,17 @@ class Main(Thread):
 
 		# Meteor Objects
 		self.all_meteors = pygame.sprite.Group()
-		for _ in range(5):
-			self.all_meteors.add(meteor.Meteor(random.randint(500, 1000), random.randint(300, 700), self.gui.meteor_img))
+		for _ in range(3):
+			self.all_meteors.add(meteor.Meteor(random.randint(500, 1000), random.randint(300, 700), self.gui.big_meteor_img))
 
 		self.all_shots = pygame.sprite.Group()
+
+		# Planet Objects
+		self.all_planets = pygame.sprite.Group()
+		for _ in range(2):
+			self.all_planets.add(meteor.Meteor(random.randint(500, 1000), random.randint(300, 700), self.gui.planet1_img))
+			self.all_planets.add(meteor.Meteor(random.randint(500, 1000), random.randint(300, 700), self.gui.planet2_img))
+			self.all_planets.add(meteor.Meteor(random.randint(500, 1000), random.randint(300, 700), self.gui.planet3_img))
 
 		while True:
 			pygame.time.delay(100)
@@ -36,7 +43,7 @@ class Main(Thread):
 			self.check_quit()
 			self.update_shuttle()
 			self.update_shots()
-			self.update_meteors()
+			self.update_obstacles()
 			self.check_collision()			
 
 			# Updating and redrawing all objects on the screen
@@ -46,6 +53,8 @@ class Main(Thread):
 			self.all_shots.draw(self.gui.root)
 			self.all_meteors.update()
 			self.all_meteors.draw(self.gui.root)
+			self.all_planets.update()
+			self.all_planets.draw(self.gui.root)
 
 			# Updating screen
 			pygame.display.flip()
@@ -91,17 +100,20 @@ class Main(Thread):
 			#shot.update()
 			if pygame.sprite.spritecollide(shot, self.all_meteors, True):
 				self.add_score()
-				for _ in range(4):
-					self.all_meteors.add(meteor.Meteor(500, 350, self.gui.meteor_img))
+				for _ in range(3):
+					self.all_planets.add(meteor.Meteor(500, 350, self.gui.small_meteor_img))
 				print("Treffer"), self.score
 
-	def update_meteors(self):
+	def update_obstacles(self):
 		for meteor in self.all_meteors:
 			meteor.move()
 
+		for planet in self.all_planets:
+			planet.move()
+
 	def check_collision(self):
-		if pygame.sprite.spritecollide(self.shuttle, self.all_meteors, True):
-			print("Collide")
+		if pygame.sprite.spritecollide(self.shuttle, self.all_planets, True):
+			pass
 	
 	def add_score(self):
 		self.score += 1
