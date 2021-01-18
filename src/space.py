@@ -6,8 +6,8 @@ class Space:
   
     def __init__(self):
         self.root = pygame.display.set_mode([1000, 700])
-        self.meteors = []
         self.shuttle = shuttle.Shuttle()
+        self.meteors = []
         self.score = 0
 
     def generate_meteor(self, x, y, a, b):
